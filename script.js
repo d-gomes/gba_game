@@ -1,65 +1,48 @@
-const mapElement = document.getElementById("map");
 const player = document.getElementById("player");
 
-const TILE_SIZE = 16;
-
-// 0 = grass, 1 = path, 2 = wall
-const map = [
-  "00000000000000000000000000000000",
-  "01111111111111111111111111111110",
-  "01000000000000000000000000000010",
-  "01000000000000000000000000000010",
-  "01000002222222000000000000000010",
-  "01000002000002000000000000000010",
-  "01000002000002000000000000000010",
-  "01000002222222000000000000000010",
-  "01000000000000000000000000000010",
-  "01000000000000000000000000000010",
-  "01111111111111111111111111111110",
-  "00000000000000000000000000000000",
-];
-
-// render map
-map.forEach(row => {
-  row.split("").forEach(tile => {
-    const div = document.createElement("div");
-    div.classList.add("tile");
-
-    if (tile === "0") div.classList.add("grass");
-    if (tile === "1") div.classList.add("path");
-    if (tile === "2") div.classList.add("block");
-
-    mapElement.appendChild(div);
-  });
-});
-
-let playerX = 2;
-let playerY = 2;
+let x = 240;
+let y = 200;
+const speed = 3;
 
 const keys = {};
-window.addEventListener("keydown", e => keys[e.key] = true);
-window.addEventListener("keyup", e => keys[e.key] = false);
 
-function canMove(x, y) {
-  if (!map[y] || !map[y][x]) return false;
-  return map[y][x] !== "2";
-}
+window.addEventListener("keydown", (e) => keys[e.key] = true);
+window.addEventListener("keyup", (e) => keys[e.key] = false);
 
 function update() {
-  let newX = playerX;
-  let newY = playerY;
+  let moving = false;
 
-  if (keys["ArrowUp"]) newY--;
-  if (keys["ArrowDown"]) newY++;
-  if (keys["ArrowLeft"]) newX--;
-  if (keys["ArrowRight"]) newX++;
-
-  if (canMove(newX, newY)) {
-    playerX = newX;
-    playerY = newY;
+  if (keys["ArrowUp"]) {
+    y -= speed;
+    player.className = "player up walk";
+    moving = true;
+  }
+  else if (keys["ArrowDown"]) {
+    y += speed;
+    player.className = "player down walk";
+    moving = true;
+  }
+  else if (keys["ArrowLeft"]) {
+    x -= speed;
+    player.className = "player left walk";
+    moving = true;
+  }
+  else if (keys["ArrowRight"]) {
+    x += speed;
+    player.className = "player right walk";
+    moving = true;
   }
 
-  player.style.transform = `translate(${playerX * TILE_SIZE}px, ${playerY * TILE_SIZE}px)`;
+  if (!moving) {
+    // mantém direção mas para animação
+    player.classList.remove("walk");
+  }
+
+  x = Math.max(0, Math.min(480, x));
+  y = Math.max(0, Math.min(352, y));
+
+  player.style.left = x + "px";
+  player.style.top = y + "px";
 
   requestAnimationFrame(update);
 }

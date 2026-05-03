@@ -9,6 +9,13 @@ body { background: #222; }
   border: 4px solid #000;
 }
 
+.map {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(0deg,#3cb043 0px,#3cb043 16px,#2e8b3c 16px,#2e8b3c 32px);
+  position: relative;
+}
+
 .path {
   position: absolute;
   top: 150px;
@@ -16,21 +23,6 @@ body { background: #222; }
   height: 64px;
   background: repeating-linear-gradient(90deg,#c2b280 0px,#c2b280 16px,#b0a070 16px,#b0a070 32px);
 }
-
-.map {
-  display: grid;
-  grid-template-columns: repeat(32, 16px);
-  grid-template-rows: repeat(24, 16px);
-}
-
-.tile {
-  width: 16px;
-  height: 16px;
-}
-
-.grass { background: #3cb043; }
-.path { background: #c2b280; }
-.block { background: #555; }
 
 /* PLAYER SPRITE */
 .player {
