@@ -27,8 +27,8 @@ body { background: #222; }
 /* PLAYER SPRITE */
 .player {
   position: absolute;
-  width: 32px;
-  height: 32px;
+  width: 16px;
+  height: 18px;
   top: 200px;
   left: 240px;
   background-image: url('https://opengameart.org/sites/default/files/Green-Cap-Character-16x18.png'); /* OpenGameArt sprite */ /* exemplo sprite */
