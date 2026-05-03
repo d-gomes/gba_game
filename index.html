@@ -3,14 +3,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tile Based Game</title>
+  <title>Pokemon Style Game</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="game">
-  <div id="map" class="map"></div>
-  <div id="player" class="player down"></div>
+  <div class="map">
+    <div class="path"></div>
+
+    <!-- Houses -->
+    <div class="house" style="top:50px; left:50px;">
+      <div class="roof"></div>
+      <div class="body">
+        <div class="door"></div>
+        <div class="window left"></div>
+        <div class="window right"></div>
+      </div>
+    </div>
+
+    <!-- Player -->
+    <div id="player" class="player down"></div>
+
+  </div>
 </div>
 
 <script src="script.js"></script>
