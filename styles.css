@@ -1,52 +1,33 @@
-body { background: #222; }
+body { background:#222; }
 
 .game {
   position: relative;
   width: 512px;
   height: 384px;
   margin: 40px auto;
-  image-rendering: pixelated;
-  border: 4px solid #000;
+  border: 4px solid black;
+  overflow: hidden;
 }
 
 .map {
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(0deg,#3cb043 0px,#3cb043 16px,#2e8b3c 16px,#2e8b3c 32px);
-  position: relative;
+  display: grid;
+  grid-template-columns: repeat(32, 16px);
+  grid-template-rows: repeat(24, 16px);
 }
 
-.path {
-  position: absolute;
-  top: 150px;
-  width: 100%;
-  height: 64px;
-  background: repeating-linear-gradient(90deg,#c2b280 0px,#c2b280 16px,#b0a070 16px,#b0a070 32px);
+.tile {
+  width: 16px;
+  height: 16px;
 }
 
-/* PLAYER SPRITE */
+.grass { background: #3cb043; }
+.path { background: #c2b280; }
+.block { background: #555; }
+
 .player {
   position: absolute;
   width: 16px;
-  height: 18px;
-  top: 200px;
-  left: 240px;
-  background-image: url('https://opengameart.org/sites/default/files/Green-Cap-Character-16x18.png'); /* OpenGameArt sprite */ /* exemplo sprite */
-  image-rendering: pixelated;
-}
-
-/* DIRECTIONS (linhas do spritesheet) */
-.player.down { background-position-y: 0px; }
-.player.left { background-position-y: -32px; }
-.player.right { background-position-y: -64px; }
-.player.up { background-position-y: -96px; }
-
-/* WALK ANIMATION (colunas) */
-.player.walk {
-  animation: walk 0.4s steps(3) infinite;
-}
-
-@keyframes walk {
-  from { background-position-x: 0px; }
-  to { background-position-x: -96px; }
+  height: 16px;
+  background: red;
+  transition: transform 0.1s linear;
 }
