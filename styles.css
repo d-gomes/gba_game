@@ -31,8 +31,7 @@ body { background: #222; }
   height: 32px;
   top: 200px;
   left: 240px;
-  background-image: url('https://i.imgur.com/6X12Q0b.png'); /* exemplo sprite */
-  background-repeat: no-repeat;
+  background-image: url('https://opengameart.org/sites/default/files/Green-Cap-Character-16x18.png'); /* OpenGameArt sprite */ /* exemplo sprite */
   image-rendering: pixelated;
 }
 
