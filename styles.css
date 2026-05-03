@@ -1,0 +1,53 @@
+body { background: #222; }
+
+.game {
+  position: relative;
+  width: 512px;
+  height: 384px;
+  margin: 40px auto;
+  image-rendering: pixelated;
+  border: 4px solid #000;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(0deg,#3cb043 0px,#3cb043 16px,#2e8b3c 16px,#2e8b3c 32px);
+  position: relative;
+}
+
+.path {
+  position: absolute;
+  top: 150px;
+  width: 100%;
+  height: 64px;
+  background: repeating-linear-gradient(90deg,#c2b280 0px,#c2b280 16px,#b0a070 16px,#b0a070 32px);
+}
+
+/* PLAYER SPRITE */
+.player {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 200px;
+  left: 240px;
+  background-image: url('https://i.imgur.com/6X12Q0b.png'); /* exemplo sprite */
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+/* DIRECTIONS (linhas do spritesheet) */
+.player.down { background-position-y: 0px; }
+.player.left { background-position-y: -32px; }
+.player.right { background-position-y: -64px; }
+.player.up { background-position-y: -96px; }
+
+/* WALK ANIMATION (colunas) */
+.player.walk {
+  animation: walk 0.4s steps(3) infinite;
+}
+
+@keyframes walk {
+  from { background-position-x: 0px; }
+  to { background-position-x: -96px; }
+}
