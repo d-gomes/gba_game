@@ -1,30 +1,83 @@
-/* ================= styles.css ================= */
+body { background:#222; }
+
+.game {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 40px auto;
+  border: 2px solid #000;
 }
 
-@keyframes armLeft {
-  from { transform: rotate(-18deg); }
-  to { transform: rotate(18deg); }
+/* PIXEL PLAYER */
+.player {
+  position: absolute;
+  width: 32px;
+  height: 48px;
+  top: 80px;
+  left: 80px;
+  image-rendering: pixelated;
 }
 
-@keyframes armRight {
-  from { transform: rotate(18deg); }
-  to { transform: rotate(-18deg); }
+/* HEAD */
+.head {
+  position: absolute;
+  width: 18px;
+  height: 14px;
+  background: #ffd6b3;
+  left: 7px;
+  top: 6px;
+  border-radius: 2px;
+  z-index: 3;
 }
 
-/* DIRECTIONS */
-.player.left {
-  transform: scaleX(-1);
+/* HAT */
+.hat {
+  position: absolute;
+  width: 24px;
+  height: 10px;
+  background: #d62828;
+  left: 4px;
+  top: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  z-index: 4;
 }
 
-.player.right {
-  transform: scaleX(1);
+.hat::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 4px;
+  background: white;
+  left: 7px;
+  top: 3px;
 }
 
-.player.up {
-  transform: scale(0.95);
-  opacity: 0.95;
+/* BODY */
+.bodyPixel {
+  position: absolute;
+  width: 16px;
+  height: 18px;
+  background: #111827;
+  left: 8px;
+  top: 18px;
+  z-index: 2;
 }
 
-.player.down {
-  transform: scale(1);
+/* BAG */
+.bag {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  background: #16a34a;
+  left: 2px;
+  top: 20px;
+  z-index: 1;
+}
+
+/* ARMS */
+.arm {
+  position: absolute;
+  width: 6px;
+  height: 14px;
 }
