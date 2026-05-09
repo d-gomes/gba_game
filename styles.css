@@ -24,24 +24,76 @@ body { background: #222; }
   background: repeating-linear-gradient(90deg,#c2b280 0px,#c2b280 16px,#b0a070 16px,#b0a070 32px);
 }
 
-/* PLAYER SPRITE */
+/* PLAYER SPRITE 
 .player {
   position: absolute;
   width: 16px;
   height: 18px;
   top: 200px;
   left: 240px;
-  background-image: url('https://opengameart.org/sites/default/files/Green-Cap-Character-16x18.png'); /* OpenGameArt sprite */ /* exemplo sprite */
+  background-image: url('https://opengameart.org/sites/default/files/Green-Cap-Character-16x18.png');
   image-rendering: pixelated;
 }
+*/
 
-/* DIRECTIONS (linhas do spritesheet) */
+.body {
+  position: absolute;
+  width: 16px;
+  height: 20px;
+  background: #c62828;
+  top: 16px;
+  left: 8px;
+}
+
+.head {
+  position: absolute;
+  width: 20px;
+  height: 16px;
+  background: #ffcc99;
+  left: 6px;
+}
+
+.arm {
+  position: absolute;
+  width: 6px;
+  height: 16px;
+  background: #ffcc99;
+  top: 18px;
+  transform-origin: top center;
+}
+
+.arm.left {
+  left: 2px;
+}
+
+.arm.right {
+  right: 2px;
+}
+
+.leg {
+  position: absolute;
+  width: 6px;
+  height: 14px;
+  background: #1e3a8a;
+  top: 36px;
+  transform-origin: top center;
+}
+
+.leg.left {
+  left: 10px;
+}
+
+.leg.right {
+  right: 10px;
+}
+
+/* DIRECTIONS (linhas do spritesheet)
 .player.down { background-position-y: 0px; }
 .player.left { background-position-y: -32px; }
 .player.right { background-position-y: -64px; }
 .player.up { background-position-y: -96px; }
 
-/* WALK ANIMATION (colunas) */
+/* WALK ANIMATION (colunas) 
 .player.walk {
   animation: walk 0.4s steps(3) infinite;
 }
@@ -49,4 +101,57 @@ body { background: #222; }
 @keyframes walk {
   from { background-position-x: 0px; }
   to { background-position-x: -96px; }
+}
+  */
+
+  .walk .leg.left {
+  animation: legLeft 0.3s infinite alternate;
+}
+
+.walk .leg.right {
+  animation: legRight 0.3s infinite alternate;
+}
+
+@keyframes legLeft {
+  from {
+    transform: rotate(20deg);
+  }
+  to {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes legRight {
+  from {
+    transform: rotate(-20deg);
+  }
+  to {
+    transform: rotate(20deg);
+  }
+}
+
+.walk .arm.left {
+  animation: armLeft 0.3s infinite alternate;
+}
+
+.walk .arm.right {
+  animation: armRight 0.3s infinite alternate;
+}
+
+@keyframes armLeft {
+  from {
+    transform: rotate(-20deg);
+  }
+  to {
+    transform: rotate(20deg);
+  }
+}
+
+@keyframes armRight {
+  from {
+    transform: rotate(20deg);
+  }
+  to {
+    transform: rotate(-20deg);
+  }
 }
