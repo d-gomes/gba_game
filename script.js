@@ -1,45 +1,52 @@
 const player = document.getElementById("player");
 
-let x = 240;
-let y = 200;
-const speed = 3;
+let x = 80;
+let y = 80;
+let frame = 0;
 
 const keys = {};
 
-window.addEventListener("keydown", (e) => keys[e.key] = true);
-window.addEventListener("keyup", (e) => keys[e.key] = false);
+window.addEventListener("keydown", e => keys[e.key] = true);
+window.addEventListener("keyup", e => keys[e.key] = false);
 
 function update() {
   let moving = false;
 
   if (keys["ArrowUp"]) {
-    y -= speed;
-    player.className = "player up walk";
+    y -= 2;
+    player.className = "player up";
     moving = true;
   }
-  else if (keys["ArrowDown"]) {
-    y += speed;
-    player.className = "player down walk";
+  if (keys["ArrowDown"]) {
+    y += 2;
+    player.className = "player down";
     moving = true;
   }
-  else if (keys["ArrowLeft"]) {
-    x -= speed;
-    player.className = "player left walk";
+  if (keys["ArrowLeft"]) {
+    x -= 2;
+    player.className = "player left";
     moving = true;
   }
-  else if (keys["ArrowRight"]) {
-    x += speed;
-    player.className = "player right walk";
+  if (keys["ArrowRight"]) {
+    x += 2;
+    player.className = "player right";
     moving = true;
   }
 
-  if (!moving) {
-    // mantém direção mas para animação
-    player.classList.remove("walk");
+  // animation
+  if (moving) {
+    frame = (frame + 1) % 20;
+    if (frame < 10) {
+      player.classList.add("frame1");
+      player.classList.remove("frame2");
+    } else {
+      player.classList.add("frame2");
+      player.classList.remove("frame1");
+    }
+  } else {
+    player.classList.add("frame1");
+    player.classList.remove("frame2");
   }
-
-  x = Math.max(0, Math.min(480, x));
-  y = Math.max(0, Math.min(352, y));
 
   player.style.left = x + "px";
   player.style.top = y + "px";
@@ -47,4 +54,6 @@ function update() {
   requestAnimationFrame(update);
 }
 
+// init frame
+player.classList.add("frame1");
 update();
