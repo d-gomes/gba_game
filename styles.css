@@ -1,83 +1,61 @@
-body { background:#222; }
-
-.game {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 40px auto;
-  border: 2px solid #000;
+body {
+  background: #222;
 }
 
-/* PIXEL PLAYER */
 .player {
-  position: absolute;
-  width: 32px;
-  height: 48px;
-  top: 80px;
-  left: 80px;
+  width: 64px;
+  height: 64px;
+
+  background-image: url('./assets/Walking.png');
+  background-repeat: no-repeat;
+
   image-rendering: pixelated;
+
+  transform: scale(4);
+
+  margin: 100px;
 }
 
-/* HEAD */
-.head {
-  position: absolute;
-  width: 18px;
-  height: 14px;
-  background: #ffd6b3;
-  left: 7px;
-  top: 6px;
-  border-radius: 2px;
-  z-index: 3;
+.walking {
+  animation: walkAnim 0.8s steps(8) infinite;
 }
 
-/* HAT */
-.hat {
-  position: absolute;
-  width: 24px;
-  height: 10px;
-  background: #d62828;
-  left: 4px;
-  top: 0;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  z-index: 4;
+@keyframes walkAnim {
+  from {
+    background-position-x: 0;
+  }
+
+  to {
+    background-position-x: -512px;
+  }
 }
 
-.hat::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 4px;
-  background: white;
-  left: 7px;
-  top: 3px;
+.running {
+  background-image: url('./assets/Running.png');
+  animation: runAnim 0.5s steps(12) infinite;
 }
 
-/* BODY */
-.bodyPixel {
-  position: absolute;
-  width: 16px;
-  height: 18px;
-  background: #111827;
-  left: 8px;
-  top: 18px;
-  z-index: 2;
+@keyframes runAnim {
+  from {
+    background-position-x: 0;
+  }
+
+  to {
+    background-position-x: -768px;
+  }
 }
 
-/* BAG */
-.bag {
-  position: absolute;
-  width: 8px;
-  height: 12px;
-  background: #16a34a;
-  left: 2px;
-  top: 20px;
-  z-index: 1;
+.stop-running {
+  background-image: url('./assets/Stop_Running.png');
+  animation: stopRun 0.5s steps(5) forwards;
 }
 
-/* ARMS */
-.arm {
-  position: absolute;
-  width: 6px;
-  height: 14px;
+@keyframes stopRun {
+  from {
+    background-position-x: 0;
+  }
+
+  to {
+    background-position-x: -320px;
+  }
 }
