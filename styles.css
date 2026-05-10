@@ -6,7 +6,7 @@ body {
   width: 64px;
   height: 64px;
 
-  background-image: url('./assets/Walking.png');
+  background-image: url('./assets/walking.png');
   background-repeat: no-repeat;
 
   image-rendering: pixelated;
@@ -33,7 +33,7 @@ body {
 }
 
 .running {
-  background-image: url('./assets/Running.png');
+  background-image: url('./assets/running.png');
   animation: runAnim 0.5s steps(12) infinite;
 }
 
@@ -48,7 +48,7 @@ body {
 }
 
 .stop-running {
-  background-image: url('./assets/Stop_Running.png');
+  background-image: url('./assets/stoprunning.png');
   animation: stopRun 0.5s steps(5) forwards;
 }
 
