@@ -27,7 +27,7 @@ body {
   width: 64px;
   height: 64px;
 
-  background-image: url('./assets/Walking.png');
+  background-image: url('./assets/walking.png');
 
   background-size: auto 64px;
 
@@ -48,7 +48,7 @@ body {
   width: 64px;
   height: 64px;
 
-  background-image: url('./assets/Running.png');
+  background-image: url('./assets/running.png');
 
   background-size: auto 64px;
 
@@ -69,7 +69,7 @@ body {
   width: 64px;
   height: 64px;
 
-  background-image: url('./assets/Stop_Running.png');
+  background-image: url('./assets/Stop_running.png');
 
   background-size: auto 64px;
 
