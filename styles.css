@@ -6,20 +6,26 @@ body {
   width: 64px;
   height: 64px;
 
-  background-image: url('./assets/walking.png');
+  background-image: url('./assets/Walking.png');
+
   background-repeat: no-repeat;
+
+  background-size: auto 64px;
 
   image-rendering: pixelated;
 
   transform: scale(4);
 
+  transform-origin: top left;
+
   margin: 100px;
 
-  background-color: transparent
+  background-color: transparent;
 }
 
 .walking {
-  animation: walkAnim 0.8s steps(8) infinite;
+  background-image: url('./assets/Walking.png');
+  animation: walkAnim 1s steps(12) infinite;
 }
 
 @keyframes walkAnim {
@@ -28,13 +34,13 @@ body {
   }
 
   to {
-    background-position-x: -512px;
+    background-position-x: -768px;
   }
 }
 
 .running {
   background-image: url('./assets/running.png');
-  animation: runAnim 0.5s steps(12) infinite;
+  animation: walkAnim 1s steps(12) infinite;
 }
 
 @keyframes runAnim {
