@@ -1,11 +1,6 @@
 const player = document.querySelector(".player");
 
-let runningTimeout = null;
-
-state = "idle"
-state = "walk"
-state = "run"
-state = "stop"
+const keys = {};
 
 function setAnimation(animation) {
 
@@ -19,27 +14,38 @@ function setAnimation(animation) {
 }
 
 window.addEventListener("keydown", (e) => {
-
-  if (!e.key.includes("Arrow")) return;
-
-  // começa andando
-  setAnimation("walking");
-
-  // depois de 200ms vira corrida
-  clearTimeout(runningTimeout);
-
-  runningTimeout = setTimeout(() => {
-    setAnimation("running");
-  }, 200);
-
+  keys[e.key] = true;
 });
 
 window.addEventListener("keyup", (e) => {
-
-  if (!e.key.includes("Arrow")) return;
-
-  clearTimeout(runningTimeout);
-
-  setAnimation("stop-running");
-
+  keys[e.key] = false;
 });
+
+function update() {
+
+  const moving =
+    keys["ArrowUp"] ||
+    keys["ArrowDown"] ||
+    keys["ArrowLeft"] ||
+    keys["ArrowRight"];
+
+  const running = keys["Shift"];
+
+  if (moving) {
+
+    if (running) {
+      setAnimation("running");
+    } else {
+      setAnimation("walking");
+    }
+
+  } else {
+
+    setAnimation("stop-running");
+
+  }
+
+  requestAnimationFrame(update);
+}
+
+update();
