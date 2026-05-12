@@ -24,7 +24,13 @@ body {
 }
 
 .walking {
-  background-image: url('./assets/walking.png');
+  width: 64px;
+  height: 64px;
+
+  background-image: url('./assets/Walking.png');
+
+  background-size: auto 64px;
+
   animation: walkAnim 1s steps(12) infinite;
 }
 
@@ -39,8 +45,14 @@ body {
 }
 
 .running {
-  background-image: url('./assets/running.png');
-  animation: walkAnim 1s steps(12) infinite;
+  width: 64px;
+  height: 64px;
+
+  background-image: url('./assets/Running.png');
+
+  background-size: auto 64px;
+
+  animation: runAnim 0.6s steps(12) infinite;
 }
 
 @keyframes runAnim {
@@ -54,7 +66,13 @@ body {
 }
 
 .stop-running {
-  background-image: url('./assets/stoprunning.png');
+  width: 64px;
+  height: 64px;
+
+  background-image: url('./assets/Stop_Running.png');
+
+  background-size: auto 64px;
+
   animation: stopRun 0.5s steps(5) forwards;
 }
 
