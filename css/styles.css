@@ -32,16 +32,11 @@ body {
 @keyframes play {
 
   from {
-
     background-position-x: 0;
-
   }
 
   to {
-
-    background-position-x:
-      calc(var(--frames) * -64px);
-
+    background-position-x: -768px;
   }
 
 }
