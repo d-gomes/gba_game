@@ -4,101 +4,90 @@ const keys = {};
 
 const animations = {
 
-  q: "Ability_Use",
-  w: "Aerial_Charge",
-  e: "Aerial_Strike",
-  r: "Aggression",
-  t: "Aiming",
+  idle: {
+    file: "Idle",
+    frames: 8,
+    speed: 1,
+    loop: true
+  },
 
-  y: "Astonishment",
-  u: "Attack_From_Cover",
-  i: "Awkwardness",
-  o: "Bullet_Dodge",
-  p: "Calm",
+  walking: {
+    file: "walking",
+    frames: 12,
+    speed: 0.8,
+    loop: true
+  },
 
-  a: "Carrying_Object",
-  s: "Casting Spell",
-  d: "Charge",
-  f: "Climbing_Ladder",
-  g: "Counterattack",
+  running: {
+    file: "running",
+    frames: 12,
+    speed: 0.5,
+    loop: true
+  },
 
-  h: "Crawl",
-  j: "Crouch",
-  k: "Cry",
-  l: "Death",
+  stoprunning: {
+    file: "stoprunning",
+    frames: 6,
+    speed: 0.6,
+    loop: false
+  },
 
-  z: "Defense attack",
-  x: "Defensive_Stance",
-  c: "Descending_Ladder",
-  v: "Desiccation",
-  b: "Disgust",
+  attack: {
+    file: "Punch_1",
+    frames: 8,
+    speed: 0.4,
+    loop: false
+  },
 
-  n: "Dodge",
-  m: "Double_Jump",
+  dodge: {
+    file: "Dodge",
+    frames: 8,
+    speed: 0.5,
+    loop: false
+  },
 
-  "1": "Double_Srtike",
-  "2": "Doubt",
-  "3": "Drinking_Potion",
-  "4": "Dscomfort",
-  "5": "Embarrassment",
-
-  "6": "Enchanced_Impact_1",
-  "7": "Enchanced_impact_2",
-  "8": "Energy_Abcorb",
-  "9": "Energy_Charge",
-  "0": "Energy_Wave",
+  jump: {
+    file: "jumping",
+    frames: 10,
+    speed: 0.5,
+    loop: false
+  }
 
 };
 
-function setAnimation(animation) {
+let currentAnimation = "";
+
+function setAnimation(name) {
+
+  if (currentAnimation === name) return;
+
+  currentAnimation = name;
+
+  const anim = animations[name];
+
+  if (!anim) return;
 
   player.style.backgroundImage =
-    `url('./assets/${animation}.png')`;
+    `url('./assets/${anim.file}.png')`;
 
-  player.classList.remove(
-    "walking",
-    "running",
-    "stop-running"
+  player.style.setProperty(
+    "--frames",
+    anim.frames
   );
 
-  player.classList.add("animate");
+  player.style.animation =
+    `play ${anim.speed}s steps(${anim.frames}) ${anim.loop ? "infinite" : "forwards"}`;
 }
 
 window.addEventListener("keydown", (e) => {
-
   keys[e.key] = true;
-
-  // setas
-  const moving =
-    keys["ArrowUp"] ||
-    keys["ArrowDown"] ||
-    keys["ArrowLeft"] ||
-    keys["ArrowRight"];
-
-  // corrida
-  if (moving && keys["Shift"]) {
-    setAnimation("running");
-    return;
-  }
-
-  // caminhada
-  if (moving) {
-    setAnimation("walking");
-    return;
-  }
-
-  // animações especiais
-  const anim = animations[e.key];
-
-  if (anim) {
-    setAnimation(anim);
-  }
-
 });
 
 window.addEventListener("keyup", (e) => {
-
   keys[e.key] = false;
+});
+
+function update() {
 
   const moving =
     keys["ArrowUp"] ||
@@ -106,8 +95,51 @@ window.addEventListener("keyup", (e) => {
     keys["ArrowLeft"] ||
     keys["ArrowRight"];
 
-  if (!moving) {
-    setAnimation("stoprunning");
+  // RUN
+  if (moving && keys["Shift"]) {
+
+    setAnimation("running");
+
   }
 
-});
+  // WALK
+  else if (moving) {
+
+    setAnimation("walking");
+
+  }
+
+  // ATTACK
+  else if (keys["j"]) {
+
+    setAnimation("attack");
+
+  }
+
+  // DODGE
+  else if (keys["k"]) {
+
+    setAnimation("dodge");
+
+  }
+
+  // JUMP
+  else if (keys[" "]) {
+
+    setAnimation("jump");
+
+  }
+
+  // STOP
+  else {
+
+    setAnimation("idle");
+
+  }
+
+  requestAnimationFrame(update);
+}
+
+setAnimation("idle");
+
+update();
