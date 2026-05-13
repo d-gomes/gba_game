@@ -1,0 +1,87 @@
+body {
+  background: #222;
+}
+
+.player {
+  width: 64px;
+  height: 64px;
+
+  background-image: url('./assets/Walking.png');
+
+  background-repeat: no-repeat;
+
+  background-size: auto 64px;
+
+  image-rendering: pixelated;
+
+  transform: scale(4);
+
+  transform-origin: top left;
+
+  margin: 100px;
+
+  background-color: transparent;
+}
+
+.walking {
+  width: 64px;
+  height: 64px;
+
+  background-image: url('./assets/Walking.png');
+
+  background-size: auto 64px;
+
+  animation: walkAnim 1s steps(12) infinite;
+}
+
+@keyframes walkAnim {
+  from {
+    background-position-x: 0;
+  }
+
+  to {
+    background-position-x: -768px;
+  }
+}
+
+.running {
+  width: 64px;
+  height: 64px;
+
+  background-image: url('./assets/Running.png');
+
+  background-size: auto 64px;
+
+  animation: runAnim 0.6s steps(12) infinite;
+}
+
+@keyframes runAnim {
+  from {
+    background-position-x: 0;
+  }
+
+  to {
+    background-position-x: -768px;
+  }
+}
+
+.stop-running {
+  width: 64px;
+  height: 64px;
+
+  background-image: url('./assets/Stop_Running.png');
+
+  background-size: auto 64px;
+
+  animation: stopRun 0.6s steps(6) forward;
+}
+
+@keyframes stopRun {
+  from {
+    background-position-x: 0;
+  }
+
+  to {
+    background-position-x: -320px;
+  }
+}
