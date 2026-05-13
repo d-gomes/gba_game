@@ -85,3 +85,29 @@ body {
     background-position-x: -320px;
   }
 }
+
+.animate {
+
+  width: 64px;
+  height: 64px;
+
+  background-repeat: no-repeat;
+
+  background-size: auto 64px;
+
+  image-rendering: pixelated;
+
+  animation: genericAnim 1s steps(12) infinite;
+}
+
+@keyframes genericAnim {
+
+  from {
+    background-position-x: 0;
+  }
+
+  to {
+    background-position-x: -768px;
+  }
+
+}
