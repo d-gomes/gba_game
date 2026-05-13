@@ -67,14 +67,23 @@ function setAnimation(name) {
 
   if (!anim) return;
 
+  // troca sprite
   player.style.backgroundImage =
     `url('./assets/${anim.file}.png')`;
 
+  // frames
   player.style.setProperty(
     "--frames",
     anim.frames
   );
 
+  // RESET animation
+  player.style.animation = "none";
+
+  // força reflow
+  player.offsetHeight;
+
+  // reaplica
   player.style.animation =
     `play ${anim.speed}s steps(${anim.frames}) ${anim.loop ? "infinite" : "forwards"}`;
 }
