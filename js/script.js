@@ -142,13 +142,13 @@ function update() {
   // STOP
   else {
 
-    setAnimation("idle");
+    setAnimation("stoprunning");
 
   }
 
   requestAnimationFrame(update);
 }
 
-setAnimation("idle");
+setAnimation("stoprunning");
 
 update();
