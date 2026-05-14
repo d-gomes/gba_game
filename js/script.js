@@ -7,6 +7,7 @@ const animations = {
   idle: {
     file: "Idle",
     frames: 8,
+    width: 512,
     speed: 1,
     loop: true
   },
@@ -14,6 +15,7 @@ const animations = {
   walking: {
     file: "walking",
     frames: 12,
+    width: 768,
     speed: 0.8,
     loop: true
   },
@@ -21,6 +23,7 @@ const animations = {
   running: {
     file: "running",
     frames: 12,
+    width: 768,
     speed: 0.5,
     loop: true
   },
@@ -28,6 +31,7 @@ const animations = {
   stoprunning: {
     file: "stoprunning",
     frames: 6,
+    width: 384,
     speed: 0.6,
     loop: false
   },
@@ -35,21 +39,8 @@ const animations = {
   attack: {
     file: "Punch_1",
     frames: 8,
+    width: 512,
     speed: 0.4,
-    loop: false
-  },
-
-  dodge: {
-    file: "Dodge",
-    frames: 8,
-    speed: 0.5,
-    loop: false
-  },
-
-  jump: {
-    file: "jumping",
-    frames: 10,
-    speed: 0.5,
     loop: false
   }
 
@@ -67,23 +58,33 @@ function setAnimation(name) {
 
   if (!anim) return;
 
-  // troca sprite
+  // troca imagem
   player.style.backgroundImage =
     `url('./assets/${anim.file}.png')`;
 
-  // frames
-  player.style.setProperty(
-    "--frames",
-    anim.frames
-  );
-
-  // RESET animation
+  // reseta
   player.style.animation = "none";
 
-  // força reflow
   player.offsetHeight;
 
-  // reaplica
+  // cria keyframe dinamico
+  const style = document.getElementById("dynamic-animation");
+
+  style.innerHTML = `
+  
+    @keyframes play {
+      from {
+        background-position-x: 0px;
+      }
+
+      to {
+        background-position-x: -${anim.width}px;
+      }
+    }
+  
+  `;
+
+  // aplica
   player.style.animation =
     `play ${anim.speed}s steps(${anim.frames}) ${anim.loop ? "infinite" : "forwards"}`;
 }
@@ -104,51 +105,33 @@ function update() {
     keys["ArrowLeft"] ||
     keys["ArrowRight"];
 
-  // RUN
   if (moving && keys["Shift"]) {
 
     setAnimation("running");
 
   }
 
-  // WALK
   else if (moving) {
 
     setAnimation("walking");
 
   }
 
-  // ATTACK
   else if (keys["j"]) {
 
     setAnimation("attack");
 
   }
 
-  // DODGE
-  else if (keys["k"]) {
-
-    setAnimation("dodge");
-
-  }
-
-  // JUMP
-  else if (keys[" "]) {
-
-    setAnimation("jump");
-
-  }
-
-  // STOP
   else {
 
-    setAnimation("stoprunning");
+    setAnimation("idle");
 
   }
 
   requestAnimationFrame(update);
 }
 
-setAnimation("stoprunning");
+setAnimation("idle");
 
 update();
